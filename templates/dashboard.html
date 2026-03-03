@@ -19,6 +19,7 @@
         .nav-links{display:flex;gap:24px}
         .nav-links a{color:var(--muted);font-size:.875rem;transition:color .15s}
         .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+        .hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;padding:4px 8px}
 
         .page-header{padding:40px 0 24px}
         .page-header h1{font-size:1.75rem;font-weight:600;margin:0 0 8px}
@@ -52,8 +53,13 @@
         footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:.8rem;background:#111}
 
         @media(max-width:768px){
+            .hamburger{display:block}
+            .nav-links{display:none;position:absolute;top:56px;left:0;right:0;background:#111;flex-direction:column;padding:16px 24px;gap:16px;border-bottom:1px solid var(--border);z-index:100}
+            .nav-links.open{display:flex}
             .chart-grid{grid-template-columns:1fr}
             .stats-grid{grid-template-columns:repeat(2,1fr)}
+            .page-header h1{font-size:1.4rem}
+            nav .container{position:relative}
         }
     </style>
 </head>
@@ -62,6 +68,7 @@
 <nav>
     <div class="container">
         <a href="/" class="logo">Valorant Pro</a>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/dashboard" class="active">Dashboard</a>
