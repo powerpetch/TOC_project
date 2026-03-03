@@ -123,7 +123,11 @@
                 <strong>Example:</strong> {{ info.example }}
             </div>
 
-            <div class="dfa-diagram" id="dfa-{{ loop.index }}"></div>
+            <div class="dfa-section">
+                <h5>DFA / NFA Explanation</h5>
+                <p>{{ info.dfa_explanation }}</p>
+                <div class="dfa-diagram" id="dfa-{{ loop.index }}"></div>
+            </div>
 
             <div style="margin-top:12px">
                 <a href="/regex-tester" class="btn-test" style="display:inline-block;background:var(--accent-light);border:1px solid #312e81;color:var(--accent);padding:6px 14px;border-radius:6px;font-size:.78rem;transition:.15s;text-decoration:none"

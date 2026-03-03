@@ -36,7 +36,7 @@ class RegexPatterns:
     """
 
     # 1. Real name extraction from infobox
-    REAL_NAME = re.compile(r'[Nn]ame[:\s]*</th>\s*<td[^>]*>([^<]+)</td>')
+    REAL_NAME = re.compile(r'[Nn]ame[:\s]*</th>\s*<td[^>]*>([^<]+)</td>') 
 
     # 2. Birth date in Month DD, YYYY format
     BIRTH_DATE = re.compile(r'[Bb]orn[:\s]*</th>\s*<td[^>]*>([A-Z][a-z]+\s+\d{1,2},?\s+\d{4})')
@@ -48,7 +48,7 @@ class RegexPatterns:
     CURRENT_TEAM = re.compile(r'[Tt]eam[:\s]*</th>\s*<td[^>]*>.*?title="([^"]+)"')
 
     # 5. Player role / position
-    ROLE = re.compile(r'(Duelist|Controller|Initiator|Sentinel|IGL|Flex|Entry)')
+    ROLE = re.compile(r'(Duelist|Controller|Initiator|Sentinel|IGL|Flex|Entry)') r
 
     # 6. Valorant agents from page links
     AGENTS = re.compile(
@@ -174,7 +174,7 @@ class ValorantScraper:
         # 2. Birth date — regex: [Bb]orn[:\s]*</th>\s*<td...>(...)</td>
         match = re.search(RegexPatterns.BIRTH_DATE, html)
         if match:
-            player.birth_date = match.group(1).strip()
+            player.birth_date = match.group(1).strip() 
 
         # 3. Nationality — regex from flag title
         match = re.search(RegexPatterns.NATIONALITY, html)
