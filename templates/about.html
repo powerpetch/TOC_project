@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Valorant Pro Players</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--accent:#818cf8;--accent-light:#1e1b4b;--bg:#0d0d0d;--card:#161616;--border:#252525;--text:#e5e5e5;--muted:#666;
+              --green:#4ade80;--purple:#a78bfa;--teal:#2dd4bf;--orange:#fb923c}
+        body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;margin:0;line-height:1.7}
+        a{color:var(--accent);text-decoration:none}
+        a:hover{color:#a5b4fc}
+
+        nav{border-bottom:1px solid var(--border);padding:16px 0;background:#111}
+        nav .container{display:flex;align-items:center;justify-content:space-between}
+        .logo{font-weight:600;font-size:1rem;color:var(--accent)}
+        .nav-links{display:flex;gap:24px}
+        .nav-links a{color:var(--muted);font-size:.875rem;transition:color .15s}
+        .nav-links a:hover,.nav-links a.active{color:var(--accent)}
+
+        .page-header{padding:40px 0 24px}
+        .page-header h1{font-size:1.75rem;font-weight:600;margin:0 0 8px}
+        .page-header h1 span{color:var(--accent)}
+        .page-header p{color:var(--muted);margin:0;max-width:550px}
+
+        .section{margin:32px 0}
+        .section h3{font-size:1rem;font-weight:600;padding-bottom:10px;border-bottom:1px solid var(--border);margin:0 0 16px;color:var(--accent)}
+
+        .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:16px;transition:border-color .15s}
+        .card:hover{border-color:#312e81}
+        .card p{margin:0;font-size:.9rem}
+
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+        .grid-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;transition:border-color .15s}
+        .grid-item:hover{border-color:var(--accent)}
+        .grid-item strong{display:block;font-size:.9rem;margin-bottom:2px;color:var(--accent)}
+        .grid-item span{font-size:.8rem;color:var(--muted)}
+
+        .feature-list{list-style:none;padding:0;margin:0}
+        .feature-list li{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:12px 16px;margin-bottom:8px;font-size:.875rem;transition:.15s}
+        .feature-list li:hover{border-color:#312e81;background:var(--accent-light)}
+        .feature-list li::before{content:'\2713';color:var(--accent);font-weight:600;margin-right:8px}
+
+        .condition-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+        .cond-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px;position:relative;padding-left:24px}
+        .cond-card:first-child::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--teal);border-radius:8px 0 0 8px}
+        .cond-card:last-child::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--purple);border-radius:8px 0 0 8px}
+        .cond-num{font-size:1.5rem;font-weight:600;color:var(--accent)}
+        .cond-title{font-weight:600;font-size:.9rem;margin-top:4px}
+        .cond-desc{font-size:.82rem;color:var(--muted);margin-top:4px}
+        .cond-status{margin-top:8px;font-size:.8rem;font-weight:500}
+        .status-pass{color:#4ade80}
+
+        footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:.8rem;margin-top:48px;background:#111}
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="/" class="logo">Valorant Pro</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/regex">Regex</a>
+            <a href="/regex-tester">Tester</a>
+            <a href="/about" class="active">About</a>
+            <a href="{{ github_url }}" target="_blank">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <section class="page-header">
+        <h1><span>About</span> This Project</h1>
+        <p>A Theory of Computation project applying Regular Expressions to web scraping and data extraction.</p>
+    </section>
+
+    <div class="section">
+        <h3>Overview</h3>
+        <div class="card">
+            <p>
+                This project demonstrates the practical application of <strong>Regular Expressions</strong> — a core concept in the
+                Theory of Computation — by building a web scraper that extracts data about professional Valorant players from
+                <a href="https://liquipedia.net/valorant/" target="_blank">Liquipedia</a>.
+                <br><br>
+                Regular expressions are equivalent to <strong>Finite Automata</strong> (DFA/NFA) in computational theory. Every regex
+                pattern used in this project can be represented as a DFA state machine that accepts or rejects input strings.
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Assignment Conditions</h3>
+        <div class="condition-grid">
+            <div class="cond-card">
+                <div class="cond-num">1</div>
+                <div class="cond-title">Minimum 100 Instances</div>
+                <div class="cond-desc">The dataset must contain at least 100 data records.</div>
+                <div class="cond-status status-pass">✓ Passed — {{ stats.total_players }} players</div>
+            </div>
+            <div class="cond-card">
+                <div class="cond-num">2</div>
+                <div class="cond-title">Python import re</div>
+                <div class="cond-desc">Must use the Python regular expression library.</div>
+                <div class="cond-status status-pass">✓ Passed — 19 regex calls</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Tech Stack</h3>
+        <div class="grid">
+            <div class="grid-item"><strong>Python 3</strong><span>Core language & regex</span></div>
+            <div class="grid-item"><strong>Flask</strong><span>Web framework</span></div>
+            <div class="grid-item"><strong>re module</strong><span>12 regex patterns</span></div>
+            <div class="grid-item"><strong>Requests</strong><span>HTTP client</span></div>
+            <div class="grid-item"><strong>BeautifulSoup</strong><span>HTML parsing</span></div>
+            <div class="grid-item"><strong>Bootstrap 5</strong><span>UI framework</span></div>
+            <div class="grid-item"><strong>Chart.js</strong><span>Data visualization</span></div>
+            <div class="grid-item"><strong>DataTables</strong><span>Interactive tables</span></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Features</h3>
+        <ul class="feature-list">
+            <li>Web scraping from Liquipedia using 12 regex patterns with DFA/NFA theory</li>
+            <li>149 professional Valorant player profiles with detailed information</li>
+            <li>Searchable, sortable, and filterable player table (by role, country, team)</li>
+            <li>Detailed player profile pages with career stats and social links</li>
+            <li>Analytics dashboard with interactive Chart.js visualizations</li>
+            <li>Interactive regex tester — test patterns live with step-by-step match traces</li>
+            <li>Visual DFA state machine diagrams for each regex pattern</li>
+            <li>Regex patterns page with full DFA/NFA explanations</li>
+            <li>REST API endpoints for player data (/api/players, /api/stats)</li>
+            <li>Responsive dark theme design</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Data Source</h3>
+        <div class="card">
+            <p>
+                All player data is scraped from <a href="https://liquipedia.net/valorant/" target="_blank">Liquipedia Valorant</a>.
+                The scraper visits team pages to collect player information including IGN, real name, nationality, role,
+                signature agents, earnings, and social media links. All extraction uses Python's <code>re</code> module.
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        TOC Project · Data from <a href="https://liquipedia.net/valorant/" target="_blank">Liquipedia</a>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

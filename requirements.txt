@@ -1,0 +1,19 @@
+# Python dependencies for NBA Players Web Scraper
+# วิชา Theory of Computation
+# ==================================
+
+# Core dependencies
+requests>=2.28.0
+
+# Web Framework
+flask>=2.3.0
+
+# For deployment (optional)
+gunicorn>=21.0.0
+
+# Optional: For GUI version
+# tkinter มาพร้อมกับ Python อยู่แล้ว ไม่ต้อง install
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# black>=22.0.0

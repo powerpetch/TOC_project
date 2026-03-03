@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ player.ign }} — Valorant Pro Players</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--accent:#818cf8;--accent-light:#1e1b4b;--bg:#0d0d0d;--card:#161616;--border:#252525;--text:#e5e5e5;--muted:#666;
+              --red:#f87171;--green:#4ade80;--blue:#60a5fa;--amber:#fbbf24;--purple:#a78bfa;--orange:#fb923c;--teal:#2dd4bf}
+        body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;margin:0;line-height:1.6}
+        a{color:var(--accent);text-decoration:none}
+        a:hover{color:#a5b4fc}
+
+        nav{border-bottom:1px solid var(--border);padding:16px 0;background:#111}
+        nav .container{display:flex;align-items:center;justify-content:space-between}
+        .logo{font-weight:600;font-size:1rem;color:var(--accent)}
+        .nav-links{display:flex;gap:24px}
+        .nav-links a{color:var(--muted);font-size:.875rem;transition:color .15s}
+        .nav-links a:hover{color:var(--accent)}
+
+        .breadcrumb-bar{padding:12px 0;font-size:.85rem;color:var(--muted)}
+        .breadcrumb-bar a{color:var(--muted)}
+        .breadcrumb-bar a:hover{color:var(--accent)}
+        .breadcrumb-bar span{margin:0 6px}
+
+        .player-header{padding:32px 0 24px;border-bottom:1px solid var(--border)}
+        .player-name{font-size:1.75rem;font-weight:600;margin:0}
+        .player-team{color:var(--muted);font-size:.9rem;margin-top:4px}
+        .badge-role{display:inline-block;padding:3px 10px;border-radius:4px;font-size:.75rem;font-weight:500;margin-top:8px;margin-right:4px}
+        .r-duelist{background:#2d1215;color:#f87171}
+        .r-controller{background:#0d2818;color:#4ade80}
+        .r-initiator{background:#172554;color:#60a5fa}
+        .r-sentinel{background:#2d2305;color:#fbbf24}
+        .r-igl{background:#1e1533;color:#a78bfa}
+        .r-flex{background:#2d1d0d;color:#fb923c}
+        .r-entry{background:#2d1215;color:#f87171}
+        .status-active{color:#4ade80}.status-inactive{color:var(--muted)}.status-retired{color:#f87171}
+
+        .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:24px 0}
+        .info-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;transition:border-color .15s}
+        .info-card:hover{border-color:var(--accent)}
+        .info-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
+        .info-value{font-size:.95rem;font-weight:500}
+
+        .section-title{font-size:1rem;font-weight:600;margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--accent)}
+
+        .agent-badges{display:flex;flex-wrap:wrap;gap:8px}
+        .agent-badge{background:var(--accent-light);border:1px solid #312e81;padding:4px 12px;border-radius:16px;font-size:.8rem;color:#a5b4fc}
+
+        .link-list a{display:inline-block;background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:6px;font-size:.85rem;color:var(--text);margin-right:8px;margin-bottom:8px;transition:.15s}
+        .link-list a:hover{border-color:var(--accent);color:var(--accent)}
+
+        .back-btn{display:inline-block;color:var(--muted);font-size:.875rem;margin-top:32px;transition:color .15s}
+        .back-btn:hover{color:var(--accent)}
+
+        footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;color:var(--muted);font-size:.8rem;margin-top:48px;background:#111}
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="/" class="logo">Valorant Pro</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/regex">Regex</a>
+            <a href="/regex-tester">Tester</a>
+            <a href="/about">About</a>
+            <a href="{{ github_url }}" target="_blank">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="breadcrumb-bar">
+        <a href="/">Home</a><span>/</span><a href="/">Players</a><span>/</span><strong>{{ player.ign }}</strong>
+    </div>
+</div>
+
+<section class="player-header">
+    <div class="container">
+        <h1 class="player-name">{{ player.ign }}</h1>
+        <div class="player-team">{{ player.current_team or 'Free Agent' }}</div>
+        {% if player.role %}
+            {% if 'IGL' in player.role %}<span class="badge-role r-igl">IGL</span>{% endif %}
+            {% if 'Duelist' in player.role %}<span class="badge-role r-duelist">Duelist</span>
+            {% elif 'Controller' in player.role %}<span class="badge-role r-controller">Controller</span>
+            {% elif 'Initiator' in player.role %}<span class="badge-role r-initiator">Initiator</span>
+            {% elif 'Sentinel' in player.role %}<span class="badge-role r-sentinel">Sentinel</span>
+            {% elif 'Entry' in player.role %}<span class="badge-role r-entry">Entry</span>
+            {% elif 'Flex' in player.role %}<span class="badge-role r-flex">Flex</span>
+            {% elif 'IGL' not in player.role %}<span class="badge-role r-flex">{{ player.role }}</span>
+            {% endif %}
+        {% endif %}
+        {% if player.status %}
+        <span style="margin-left:8px;font-size:.8rem" class="{% if player.status == 'Active' %}status-active{% elif player.status == 'Retired' %}status-retired{% else %}status-inactive{% endif %}">
+            {{ player.status }}
+        </span>
+        {% endif %}
+    </div>
+</section>
+
+<div class="container">
+    <h3 class="section-title">Personal Information</h3>
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-label">Real Name</div>
+            <div class="info-value">{{ player.real_name or '—' }}</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Country</div>
+            <div class="info-value">{{ player.country or '—' }}</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Date of Birth</div>
+            <div class="info-value">{{ player.birth_date or '—' }}</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Age</div>
+            <div class="info-value">{{ player.age or '—' }}</div>
+        </div>
+    </div>
+
+    <h3 class="section-title">Career</h3>
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-label">Current Team</div>
+            <div class="info-value">{{ player.current_team or 'Free Agent' }}</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Role</div>
+            <div class="info-value">{{ player.role or '—' }}</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Years Active</div>
+            <div class="info-value">{{ player.years_active_start or '?' }} – {{ player.years_active_end or 'Present' }}</div>
+        </div>
+        <div class="info-card">
+            <div class="info-label">Total Earnings</div>
+            <div class="info-value">{{ player.earnings or '—' }}</div>
+        </div>
+    </div>
+
+    {% if player.signature_agents %}
+    <h3 class="section-title">Signature Agents</h3>
+    <div class="agent-badges">
+        {% for agent in player.signature_agents.split(', ') %}
+        <span class="agent-badge">{{ agent }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <h3 class="section-title">Links</h3>
+    <div class="link-list">
+        {% if player.liquipedia_url %}
+        <a href="{{ player.liquipedia_url }}" target="_blank">Liquipedia</a>
+        {% endif %}
+        {% if player.twitter %}
+        <a href="https://twitter.com/{{ player.twitter }}" target="_blank">@{{ player.twitter }}</a>
+        {% endif %}
+        {% if player.twitch %}
+        <a href="https://twitch.tv/{{ player.twitch }}" target="_blank">{{ player.twitch }}</a>
+        {% endif %}
+    </div>
+
+    <a href="/" class="back-btn">← Back to Player List</a>
+</div>
+
+<footer>
+    <div class="container">
+        TOC Project · Data from <a href="https://liquipedia.net/valorant/" target="_blank">Liquipedia</a>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
